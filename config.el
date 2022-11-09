@@ -87,6 +87,18 @@
   (map! :nv "j" #'evil-backward-char)
   (map! :nv "l" #'evil-forward-char)
   (map! :nv "gb" #'evil-buffer)
+  (map! :leader :prefix "w" :desc "Delete other windows" :nv "O" #'delete-other-windows)
+  (map! :leader :prefix "w" :desc "Maximize this window" :nv "o" #'doom/window-maximize-buffer)
+  (map! :leader :prefix "w" :desc "Enlarge the current window" :nv "e" #'doom/window-enlargen)
+  (map! :leader :prefix "w" :desc "Maximize window horizontally" :nv "S" #'doom/window-maximize-horizontally)
+  (map! :leader :prefix "w" :desc "Maximize window vertically" :nv "V" #'doom/window-maximize-vertically)
+  (map! :prefix "C-w" :nv "O" #'delete-other-windows)
+  (map! :prefix "C-w" :nv "o" #'doom/window-maximize-buffer)
+  (map! :prefix "C-w" :nv "e" #'doom/window-enlargen)
+  (map! :prefix "C-w" :nv "s" #'+evil/window-split-and-follow)
+  (map! :prefix "C-w" :nv "v" #'+evil/window-vsplit-and-follow)
+  (map! :prefix "C-w" :nv "S" #'doom/window-maximize-horizontally)
+  (map! :prefix "C-w" :nv "V" #'doom/window-maximize-vertically)
   (map! :prefix "C-w" :nv "h" #'evil-window-up)
   (map! :prefix "C-w" :nv "k" #'evil-window-down)
   (map! :prefix "C-w" :nv "j" #'evil-window-left)
@@ -114,7 +126,7 @@
   (map! :leader :prefix "m" :map dired-mode-map :n :desc "Copy file at point" "c" #'dired-do-copy)
   (map! :leader :prefix "m" :map dired-mode-map :n :desc "Delete file at point" "d" #'dired-do-delete)
   (map! :leader :prefix "t" :desc "Dired at this location" :nv "t" #'dired-jump)
-  (map! :leader :prefix "r" :desc "Dired at project root" :nv "r" #'projectile-dired))
+  (map! :leader :prefix "t" :desc "Dired at project root" :nv "r" #'projectile-dired))
 
 (after! doom-themes
   (setq doom-themes-enable-bold t
