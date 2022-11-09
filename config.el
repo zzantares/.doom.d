@@ -135,4 +135,8 @@
 (after! org
   (setq org-hide-emphasis-markers t))
 
+(after! lsp
+  (map! :leader :prefix "i" :desc "Jump to definition" :n "D" #'lsp-find-definition))
+
 (map! :g "C-s" #'save-buffer)
+(map! :leader :prefix "i" :desc "Jump to definition" :n "d" #'+lookup/definition)
