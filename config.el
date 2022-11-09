@@ -41,7 +41,7 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
+(setq org-directory "~/Documents/notes/org/")
 
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
@@ -109,6 +109,10 @@
   (map! :map dired-mode-map :n "h" #'dired-previous-line)
   (map! :map dired-mode-map :n "o" #'dired-find-file)
   (map! :map dired-mode-map :n "u" #'dired-up-directory)
+  (map! :leader :prefix "m" :map dired-mode-map :desc "Create directory" :n "a" #'dired-create-directory)
+  (map! :leader :prefix "m" :map dired-mode-map :n :desc "Rename file at point" "m" #'dired-do-rename)
+  (map! :leader :prefix "m" :map dired-mode-map :n :desc "Copy file at point" "c" #'dired-do-copy)
+  (map! :leader :prefix "m" :map dired-mode-map :n :desc "Delete file at point" "d" #'dired-do-delete)
   (map! :leader :prefix "t" :desc "Dired at this location" :nv "t" #'dired-jump)
   (map! :leader :prefix "r" :desc "Dired at project root" :nv "r" #'projectile-dired))
 
