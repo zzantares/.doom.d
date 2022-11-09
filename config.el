@@ -2,6 +2,8 @@
 
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
+(setq zz-is-workstation (string= (system-name) "omnis"))
+
 
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
@@ -128,6 +130,10 @@
   (map! :leader :prefix "t" :desc "Dired at this location" :nv "t" #'dired-jump)
   (map! :leader :prefix "t" :desc "Dired at project root" :nv "r" #'projectile-dired))
 
+(after! magit
+  (map! :map magit-mode-map :nv "k" #'evil-next-visual-line)
+  (map! :map magit-mode-map :nv "h" #'evil-previous-visual-line))
+
 (after! doom-themes
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t))
@@ -140,3 +146,11 @@
 
 (map! :g "C-s" #'save-buffer)
 (map! :leader :prefix "i" :desc "Jump to definition" :n "d" #'+lookup/definition)
+(map! :leader :n "M-," #'doom/goto-private-config-file)
+
+(when zz-is-workstation
+  (setq lsp-enable-file-watchers nil)
+  ;; TODO Set this variables as safe instead of ignoring risky-local-variables
+  ;; haskell-hoogle-command
+  ;; haskell-hoogle-server-command
+  (advice-add 'risky-local-variable-p :override #'ignore))
