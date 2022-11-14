@@ -4,8 +4,6 @@
 ;; sync' after modifying this file!
 (setq zz-is-workstation (string= (system-name) "omnis"))
 
-
-
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
 (setq user-full-name "Julio César"
@@ -34,7 +32,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'default-black)
+(setq doom-theme 'modus-vivendi)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -134,6 +132,10 @@
   (map! :map magit-mode-map :nv "k" #'evil-next-visual-line)
   (map! :map magit-mode-map :nv "h" #'evil-previous-visual-line))
 
+(after! git-gutter
+  (map! :nv "]g" #'+vc-gutter/next-hunk)
+  (map! :nv "[g" #'+vc-gutter/previous-hunk))
+
 (after! doom-themes
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t))
@@ -143,6 +145,14 @@
 
 (after! lsp
   (map! :leader :prefix "i" :desc "Jump to definition" :n "D" #'lsp-find-definition))
+
+(after! lsp-haskell
+  (setq lsp-haskell-formatting-provider "fourmolu"))
+
+(use-package! ormolu
+  :hook (haskell-mode . ormolu-format-on-save-mode)
+  :custom
+  (ormolu-process-path "fourmolu"))
 
 (map! :g "C-s" #'save-buffer)
 (map! :leader :prefix "i" :desc "Jump to definition" :n "d" #'+lookup/definition)
