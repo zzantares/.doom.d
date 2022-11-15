@@ -2,6 +2,8 @@
 
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
+
+;; TODO This check probably belongs to another file that runs at an earlier stage
 (setq zz-is-workstation (string= (system-name) "omnis"))
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
@@ -140,6 +142,9 @@
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t))
 
+(after! doom-modeline
+  (setq doom-modeline-persp-name t))
+
 (after! org
   (setq org-hide-emphasis-markers t))
 
@@ -160,7 +165,11 @@
 
 (when zz-is-workstation
   (setq lsp-enable-file-watchers nil)
-  ;; TODO Set this variables as safe instead of ignoring risky-local-variables
-  ;; haskell-hoogle-command
-  ;; haskell-hoogle-server-command
-  (advice-add 'risky-local-variable-p :override #'ignore))
+  ;; Note if following hook doesn't work then can do: (advice-add 'risky-local-variable-p :override #'ignore)
+  (add-hook! haskell-mode
+    (add-to-list 'safe-local-variable-values
+                 '(haskell-hoogle-command . "stack hoogle --"))
+    (add-to-list 'safe-local-variable-values
+                 '(haskell-hoogle-server-command . (lambda (port) (list "stack" "hoogle" "--" "server" "--local" "-p" (number-to-string port)))))))
+
+(add-hook! 'window-setup-hook :append 'toggle-frame-fullscreen)
