@@ -78,7 +78,7 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-(setq auth-sources '("~/.authinfo.gpg"))
+(setq auth-sources '("~/.doom.d/secrets/.authinfo.gpg"))
 (setq ispell-dictionary "en")
 (setq-default line-spacing 3
               indent-tabs-mode nil
