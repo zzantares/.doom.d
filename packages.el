@@ -50,3 +50,4 @@
 ;(unpin! t)
 
 (package! ormolu)
+(package! just-mode)

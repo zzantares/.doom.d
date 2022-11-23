@@ -78,6 +78,7 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+(setq auth-sources '("~/.authinfo.gpg"))
 (setq ispell-dictionary "en")
 (setq-default line-spacing 3
               indent-tabs-mode nil
@@ -131,6 +132,9 @@
   (map! :leader :prefix "t" :desc "Dired at project root" :nv "r" #'projectile-dired))
 
 (after! magit
+  ;; TODO This setting seems to not been working
+  (setq magit-revision-show-gravatars '("^Author:     " . "^Commit:     "))
+
   (map! :map magit-mode-map :nv "k" #'evil-next-visual-line)
   (map! :map magit-mode-map :nv "h" #'evil-previous-visual-line))
 
