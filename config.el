@@ -84,6 +84,8 @@
               indent-tabs-mode nil
               tab-width 4)
 
+(setq evil-snipe-scope 'visible)
+
 (after! evil
   (map! :nv "h" #'evil-previous-line)
   (map! :nv "k" #'evil-next-line)
