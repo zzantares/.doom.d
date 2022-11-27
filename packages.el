@@ -49,5 +49,6 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
 
+(package! straight :pin "3eca39d") ;; see: https://github.com/doomemacs/doomemacs/issues/6960
 (package! ormolu)
 (package! just-mode)
