@@ -147,6 +147,9 @@
   (map! :nv "]g" #'+vc-gutter/next-hunk)
   (map! :nv "[g" #'+vc-gutter/previous-hunk))
 
+(after! button
+  (map! :map button-map :nv "o" #'push-button))
+
 (after! doom-themes
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t))
