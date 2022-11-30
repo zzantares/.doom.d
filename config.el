@@ -140,6 +140,10 @@
 
   (map! :map magit-mode-map :nv "k" #'evil-next-visual-line)
   (map! :map magit-mode-map :nv "h" #'evil-previous-visual-line)
+  (map! :map git-rebase-mode-map :nv "k" #'evil-next-line)
+  (map! :map git-rebase-mode-map :nv "h" #'evil-previous-line)
+  (map! :map git-rebase-mode-map :nv "gh" #'git-rebase-move-line-up)
+  (map! :map git-rebase-mode-map :nv "gk" #'git-rebase-move-line-down)
   (map! :leader :prefix "g" :desc "Push a branch" :nv "P" #'magit-push)
   (map! :leader :prefix "g" :desc "Pull a branch" :nv "p" #'magit-pull))
 
