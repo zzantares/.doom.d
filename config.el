@@ -85,6 +85,7 @@
               tab-width 4)
 
 (setq evil-snipe-scope 'visible)
+(setq lsp-haskell-formatting-provider "fourmolu")
 
 (after! evil
   (map! :nv "h" #'evil-previous-line)
@@ -158,14 +159,6 @@
 
 (after! lsp
   (map! :leader :prefix "i" :desc "Jump to definition" :n "D" #'lsp-find-definition))
-
-(after! lsp-haskell
-  (setq lsp-haskell-formatting-provider "fourmolu"))
-
-(use-package! ormolu
-  :hook (haskell-mode . ormolu-format-on-save-mode)
-  :custom
-  (ormolu-process-path "fourmolu"))
 
 (map! :g "C-s" #'save-buffer)
 (map! :leader :prefix "i" :desc "Jump to definition" :n "d" #'+lookup/definition)
