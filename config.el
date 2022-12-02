@@ -137,13 +137,21 @@
 (after! magit
   ;; TODO This setting seems to not been working
   (setq magit-revision-show-gravatars '("^Author:     " . "^Commit:     "))
-
   (map! :map magit-mode-map :nv "k" #'evil-next-visual-line)
   (map! :map magit-mode-map :nv "h" #'evil-previous-visual-line)
   (map! :map git-rebase-mode-map :nv "k" #'evil-next-line)
   (map! :map git-rebase-mode-map :nv "h" #'evil-previous-line)
   (map! :map git-rebase-mode-map :nv "gh" #'git-rebase-move-line-up)
   (map! :map git-rebase-mode-map :nv "gk" #'git-rebase-move-line-down)
+  ;; TODO Check that these work when blaming a file
+  (map! :map magit-blame-mode-map :nv "k" #'evil-next-line)
+  (map! :map magit-blame-mode-map :nv "h" #'evil-previous-line)
+  (map! :map magit-blame-mode-map :nv "C-h" #'magit-blame-previous-chunk)
+  (map! :map magit-blame-mode-map :nv "C-k" #'magit-blame-next-chunk)
+  (map! :map magit-blame-mode-map :nv "g H" #'magit-blame-previous-chunk-same-commit)
+  (map! :map magit-blame-mode-map :nv "g K" #'magit-blame-next-chunk-same-commit)
+  (map! :map magit-blame-mode-map :nv "g h" #'magit-blame-previous-chunk)
+  (map! :map magit-blame-mode-map :nv "g k" #'magit-blame-next-chunk)
   (map! :leader :prefix "g" :desc "Push a branch" :nv "P" #'magit-push)
   (map! :leader :prefix "g" :desc "Pull a branch" :nv "p" #'magit-pull))
 
