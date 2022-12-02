@@ -11,7 +11,5 @@ ln -s `dirname $self` $HOME/.doom.d
 
 echo "==> Applying doom-colemak.patch ..."
 pushd $HOME/.emacs.d
-git apply $self/.doom.d/doom-colemak.patch
+git apply "$(dirname $self)/doom-colemak.patch" && echo "==> Done!"
 popd
-
-echo "==> Done!"
