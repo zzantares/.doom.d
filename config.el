@@ -4,7 +4,7 @@
 ;; sync' after modifying this file!
 
 ;; TODO This check probably belongs to another file that runs at an earlier stage
-(setq zz-is-workstation (string= (system-name) "omnis"))
+(setq zz-is-workstation (member (system-name) '("omnis" "omnia")))
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
@@ -23,8 +23,8 @@
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 ;;
-(setq doom-font (font-spec :family "CaskaydiaCove Nerd Font Mono" :size 18 :weight 'semi-light)
-      doom-variable-pitch-font (font-spec :family "CaskaydiaCove Nerd Font" :size 19))
+(setq doom-font (font-spec :family "CaskaydiaCove Nerd Font Mono" :size 13.0 :weight 'semi-light)
+      doom-variable-pitch-font (font-spec :family "CaskaydiaCove Nerd Font" :size 14.0))
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -143,6 +143,8 @@
   (map! :map git-rebase-mode-map :nv "h" #'evil-previous-line)
   (map! :map git-rebase-mode-map :nv "gh" #'git-rebase-move-line-up)
   (map! :map git-rebase-mode-map :nv "gk" #'git-rebase-move-line-down)
+  (map! :map git-rebase-mode-map :nv "C-k" #'git-rebase-move-line-down)
+  (map! :map git-rebase-mode-map :nv "C-h" #'git-rebase-move-line-up)
   ;; TODO Check that these work when blaming a file
   (map! :map magit-blame-mode-map :nv "k" #'evil-next-line)
   (map! :map magit-blame-mode-map :nv "h" #'evil-previous-line)
@@ -172,11 +174,8 @@
 (after! org
   (setq org-hide-emphasis-markers t))
 
-(after! lsp
-  (map! :leader :prefix "i" :desc "Jump to definition" :n "D" #'lsp-find-definition))
-
+(map! :nv "C-t" 'nil)
 (map! :g "C-s" #'save-buffer)
-(map! :leader :prefix "i" :desc "Jump to definition" :n "d" #'+lookup/definition)
 (map! :leader :n "M-," #'doom/goto-private-config-file)
 
 (when zz-is-workstation
