@@ -139,6 +139,10 @@
   (setq magit-revision-show-gravatars '("^Author:     " . "^Commit:     "))
   (map! :map magit-mode-map :nv "k" #'evil-next-visual-line)
   (map! :map magit-mode-map :nv "h" #'evil-previous-visual-line)
+  (map! :map magit-diff-mode-map :prefix "C-w" :nv "k" #'evil-window-down)
+  (map! :map magit-diff-mode-map :prefix "C-w" :nv "h" #'evil-window-up)
+  (map! :map magit-diff-mode-map :prefix "C-w" :nv "j" #'evil-window-left)
+  (map! :map magit-diff-mode-map :prefix "C-w" :nv "l" #'evil-window-right)
   (map! :map git-rebase-mode-map :nv "k" #'evil-next-line)
   (map! :map git-rebase-mode-map :nv "h" #'evil-previous-line)
   (map! :map git-rebase-mode-map :nv "gh" #'git-rebase-move-line-up)
@@ -177,6 +181,16 @@
 (map! :nv "C-t" 'nil)
 (map! :g "C-s" #'save-buffer)
 (map! :leader :n "M-," #'doom/goto-private-config-file)
+(map! :map helpful-mode-map :nv "o" #'helpful-visit-reference)
+
+;; TODO Workspace 'n' should be 'next', 'p' should ve 'prev', 'c' should be 'create', 'l' should be list
+
+(after! haskell
+  (setq haskell-indentation-layout-offset 4
+        haskell-indentation-starter-offset 4
+        haskell-indentation-left-offset 4
+        haskell-indentation-where-pre-offset -2
+        haskell-indentation-where-post-offset 0))
 
 (when zz-is-workstation
   (setq lsp-enable-file-watchers nil)
