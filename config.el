@@ -86,6 +86,7 @@
 
 (setq evil-snipe-scope 'visible)
 (setq lsp-haskell-formatting-provider "fourmolu")
+(setq lsp-lens-enable nil)
 
 (after! evil
   (map! :nv "h" #'evil-previous-line)
@@ -179,6 +180,10 @@
   (setq org-hide-emphasis-markers t))
 
 (map! :nv "C-t" 'nil)
+(after! format-all
+  ;; TODO Seems this doesn't take effect because LSP formatter runs (which is the same but without args)
+  (setq format-all-formatters '(("C" (clang-formatter "--style=GNU")))))
+
 (map! :g "C-s" #'save-buffer)
 (map! :leader :n "M-," #'doom/goto-private-config-file)
 (map! :map helpful-mode-map :nv "o" #'helpful-visit-reference)
